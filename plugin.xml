@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="nirwan.cordova.plugin.printer"
+        version="0.6.0dev">
+
+    <name>Print online/offline with Third party apps</name>
+
+    <description>Plugin to print both online/offline for Cordova 3.x.x</description>
+    <repo>https://github.com/pankajnirwan103/cordova-plugin-printer.git</repo>
+    <keywords>print, printer, ios, android</keywords>
+    <license>Apache 2.0</license>
+
+    <author>Pankaj Nirwan</author>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <!-- interface -->
+    <js-module src="www/printer.js" name="Printer">
+        <clobbers target="plugin.printer" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Printer">
+                <param name="ios-package" value="APPPrinter"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/APPPrinter.h" />
+        <source-file src="src/ios/APPPrinter.m" />
+    </platform>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Printer">
+                <param name="android-package" value="nirwan.cordova.plugin.printer.Printer"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/Printer.java" target-dir="src/nirwan/cordova/plugin/printer" />
+    </platform>
+
+</plugin>
